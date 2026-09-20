@@ -1,2 +1,2 @@
 # CULTOS-IEADC-JD.-CASTELO-BRANCO
-Liturgia de culto
+Liturgia 
