@@ -1,0 +1,22 @@
+<style>body{font-family:Arial;margin:0;background:#f0f0f0}.box{margin:10px;background:white;border-radius:6px;overflow:hidden;box-shadow:0 1px 3px #999}.tit{padding:10px;text-align:center;font-weight:bold;font-size:19px}.txt{padding:12px;min-height:30px;font-size:16px} [contenteditable]:focus{background:#fffde7;outline:none}</style>
+
+<div class="box"><div class="tit" style="background:#2c5d8a;color:white">CULTO DE AÇÃO DE GRAÇAS</div></div>
+
+<div class="box"><div class="tit" style="background:#6a1b2a;color:white">PEDIDO PARA LOUVAR</div><div class="txt" id="c1" contenteditable="true" oninput="sync()"></div></div>
+
+<div class="box"><div class="tit" style="background:#8cbde8">VISITANTES</div><div class="txt" id="c2" contenteditable="true" oninput="sync()">- Severo, Rejane e Isabela. Moram no Xaxim<br>- Maria José vice coordenadora Coadc<br>- Presbítero Isaak e esposa Cláudia<br>- Irmã Silmara vice coordenadora Coadc<br>- Abner e Thaiane, filho e nora do Pastor Cézar<br>- Vera Lúcia coordenadora Coadc e PRELETORA da Noite</div></div>
+
+<div class="box"><div class="tit" style="background:#2e7d32;color:white">PEDIDOS DE ORAÇÃO</div><div class="txt" id="c3" contenteditable="true" oninput="sync()"></div></div>
+
+<div class="box"><div class="tit" style="background:#f7e06a">AVISOS</div><div class="txt" id="c4" contenteditable="true" oninput="sync()"></div></div>
+
+<div class="box"><div class="tit" style="background:#c62828;color:white">DÍZIMOS</div><div class="txt" id="c5" contenteditable="true" oninput="sync()">- JOSENILDA NOVAES CARDOSO<br>- GENEIDE GROH<br>- OSCAR CLAUDINEI DA SILVA</div></div>
+
+<div class="box"><div class="tit" style="background:#5d4037;color:white">OFERTAS DE MISSÕES</div><div class="txt" id="c6" contenteditable="true" oninput="sync()">- OSCAR CLAUDINEI DA SILVA<br><br><center><i style="color:red;font-size:12px">Favor não tirar da ordem, pois corresponde à liturgia do culto</i></center></div></div>
+
+<script>
+var URL='https://ntfy.sh/culto-identico-pdf-sem-texto-v3';
+var lock=false;
+function sync(){ if(lock) return; var d={c1:document.getElementById('c1').innerHTML,c2:document.getElementById('c2').innerHTML,c3:document.getElementById('c3').innerHTML,c4:document.getElementById('c4').innerHTML,c5:document.getElementById('c5').innerHTML,c6:document.getElementById('c6').innerHTML}; fetch(URL,{method:'POST',body:JSON.stringify(d)});}
+try{ var es=new EventSource(URL+'/sse'); es.onmessage=function(e){ try{ var j=JSON.parse(e.data); if(!j.message) return; if(Date.now()-j.time*1000<2500) return; var d=JSON.parse(j.message); lock=true; for(var k in d){ if(document.getElementById(k)) document.getElementById(k).innerHTML=d[k]; } setTimeout(()=>{lock=false},600);}catch(x){} }; }catch(e){}
+</script>
