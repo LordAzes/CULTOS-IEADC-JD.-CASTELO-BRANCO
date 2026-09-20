@@ -19,4 +19,4 @@ var URL='https://ntfy.sh/culto-identico-pdf-sem-texto-v3';
 var lock=false;
 function sync(){ if(lock) return; var d={c1:document.getElementById('c1').innerHTML,c2:document.getElementById('c2').innerHTML,c3:document.getElementById('c3').innerHTML,c4:document.getElementById('c4').innerHTML,c5:document.getElementById('c5').innerHTML,c6:document.getElementById('c6').innerHTML}; fetch(URL,{method:'POST',body:JSON.stringify(d)});}
 try{ var es=new EventSource(URL+'/sse'); es.onmessage=function(e){ try{ var j=JSON.parse(e.data); if(!j.message) return; if(Date.now()-j.time*1000<2500) return; var d=JSON.parse(j.message); lock=true; for(var k in d){ if(document.getElementById(k)) document.getElementById(k).innerHTML=d[k]; } setTimeout(()=>{lock=false},600);}catch(x){} }; }catch(e){}
-</script>
+</script> 
